@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="en">
+<!-- HEAD: Page information, browser settings, title, and CSS file. -->
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Christian Ash's experimental 3D developer portfolio prototype.">
+  <title>Christian Ash | 3D Portfolio</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<!-- BODY: Everything visible and interactive on the webpage. -->
+<body>
+  <!-- ACCESSIBILITY: Lets keyboard users skip directly to the main content. -->
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <!-- BACKGROUND EFFECTS: Decorative elements hidden from screen readers. -->
+  <div class="cyber-effects" aria-hidden="true">
+    <span class="cyber-grid"></span>
+    <span class="cyber-particles"></span>
+  </div>
+  <div class="scene-glow" aria-hidden="true"></div>
+
+  <!-- HEADER: Contains the logo/brand and the main navigation menu. -->
+  <header class="site-header">
+    <a class="brand" href="#home" aria-label="Christian Ash home">
+      <img src="assets/ca-logo.png" alt="">
+      <span>Christian Ash</span>
+    </a>
+    <nav aria-label="Main navigation">
+      <a href="#home" class="active" data-scene-link="home">Home</a>
+      <a href="#projects" data-scene-link="projects">Projects</a>
+      <a href="#about" data-scene-link="about">About</a>
+      <a href="#contact" data-scene-link="contact">Contact</a>
+    </nav>
+  </header>
+
+  <!-- MAIN CONTENT: Contains all four pages/scenes of the portfolio. -->
+  <main id="main-content" tabindex="-1">
+    <!-- HOME SECTION: Introduces Christian and links to the projects. -->
+    <section class="hero scene active" id="home" data-scene="home" aria-hidden="false">
+      <div class="hero-copy">
+<h1>Building experiences with <span>purpose and personality.</span></h1>
+<p><em>What you see is what you get.</em> I’m Christian Ash, a software developer and digital designer who loves turning creative ideas into digital adventures.</p>
+        <a class="primary-action" href="#projects" data-scene-link="projects">Enter project deck <span aria-hidden="true">→</span></a>
+      </div>
+      <nav class="scene-navigation" aria-label="Continue to the next page">
+        <a href="#projects" data-scene-link="projects">Projects <span aria-hidden="true">→</span></a>
+      </nav>
+    </section>
+
+    <!-- PROJECTS SECTION: Interactive DualDeck and project library. -->
+    <section class="projects scene" id="projects" data-scene="projects" aria-hidden="true">
+      <div class="section-heading">
+        <h2>Projects</h2>
+      </div>
+
+      <div class="project-stage">
+        <!-- DUALDECK: The main project viewer. -->
+        <article class="dualdeck" data-deck-mode="boot" tabindex="0" aria-label="CA DualDeck project viewer. Use Tab to reach controls, arrow keys to navigate, Enter to open, and Escape to return." aria-live="polite">
+          <!-- TOP SCREEN: Shows the selected project's title and screenshot. -->
+          <div class="deck-lid">
+            <div class="deck-screen project-display">
+              <div class="project-copy">
+                <p id="project-number">CA DeckOS</p>
+                <h3 id="project-name">Welcome</h3>
+                <p id="project-summary">Press A to start the project system.</p>
+              </div>
+              <div class="project-image" id="project-image" role="img" aria-label="Project screenshot placeholder">
+                <img id="deck-logo" class="deck-logo" src="assets/ca-logo.png" alt="">
+                <span id="screenshot-label">System ready</span>
+                <div id="screenshot-dots" class="screenshot-dots" aria-label="Choose a project screenshot" hidden></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="deck-hinge"><span>CA</span> DualDeck <i></i></div>
+
+          <!-- BOTTOM HALF: Contains project details and controller buttons. -->
+          <div class="deck-base">
+            <!-- D-PAD: Changes projects and screenshots. -->
+            <div class="dpad" aria-label="Browse projects and screenshots">
+              <button id="previous-project" class="dpad-up" type="button" aria-label="Previous project">↑</button>
+              <button id="previous-screenshot" class="dpad-left" type="button" aria-label="Previous screenshot">←</button>
+              <button id="next-screenshot" class="dpad-right" type="button" aria-label="Next screenshot">→</button>
+              <button id="next-project" class="dpad-down" type="button" aria-label="Next project">↓</button>
+            </div>
+
+            <!-- DETAILS SCREEN: Shows information about the selected project. -->
+            <div class="deck-screen details-screen">
+              <div class="deck-home-message" id="deck-home-message">
+                <strong>Press A to start</strong>
+                <span>Your selected project will appear here.</span>
+              </div>
+              <div class="project-details" id="project-details" tabindex="0" aria-label="Scrollable project details" hidden>
+                <div class="details-panel" data-details-panel="overview">
+                  <section class="details-overview"><p id="detail-project-number"></p><h3 id="detail-project-name"></h3><p id="detail-project-summary"></p></section>
+                  <dl class="project-meta">
+                    <div><dt>Role</dt><dd id="project-role"></dd></div>
+                    <div><dt>Year</dt><dd id="project-year"></dd></div>
+                    <div><dt>Status</dt><dd id="project-status"></dd></div>
+                  </dl>
+                  <section><h4>Technologies</h4><div class="tags" id="project-tools"></div></section>
+                  <section><h4>Outcome</h4><p id="project-outcome"></p></section>
+                </div>
+                <div class="details-panel" data-details-panel="case-study" hidden>
+                  <section><h4>Problem</h4><p id="project-problem"></p></section>
+                  <section><h4>Solution</h4><p id="project-solution"></p></section>
+                  <section><h4>Challenges</h4><p id="project-challenges"></p></section>
+                  <section><h4>What I Learned</h4><p id="project-learned"></p></section>
+                </div>
+              </div>
+              <div class="deck-status" id="deck-status" role="status" aria-live="polite" hidden></div>
+            </div>
+
+            <!-- ACTION BUTTONS: Open, return, fullscreen, demo, and GitHub controls. -->
+            <div class="device-actions" aria-label="Project actions">
+              <div class="face-buttons">
+                <button id="x-button" class="round-button face-x" type="button" data-label="Fullscreen" aria-label="Enlarge screenshot">X</button>
+                <button id="y-button" class="round-button face-y" type="button" data-label="Case Study" aria-label="Switch project details view">Y</button>
+                <button id="a-button" class="round-button face-a" type="button" data-label="Open" aria-label="Accept or open selection">A</button>
+                <button id="b-button" class="round-button face-b" type="button" data-label="Back" aria-label="Return to DeckOS home">B</button>
+              </div>
+              <div class="system-buttons">
+                <button id="start-button" class="system-button" type="button" aria-label="Launch live demo">Start</button>
+                <button id="select-button" class="system-button" type="button" aria-label="View GitHub code">Select</button>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- PROJECT LIBRARY: Lets the visitor choose a project cartridge. -->
+        <div class="cartridge-panel is-locked">
+          <p class="cartridge-label">Project Library</p>
+          <div class="cartridges" aria-label="Choose a project">
+          <button class="cartridge selected" type="button" data-project="0"><span>01</span> Portfolio</button>
+          <button class="cartridge" type="button" data-project="1"><span>02</span> Project Two</button>
+          <button class="cartridge" type="button" data-project="2"><span>03</span> Project Three</button>
+          </div>
+          <p class="cartridge-help">Choose a cartridge to load it into the DualDeck.</p>
+          <div class="control-guide" aria-label="DualDeck controls">
+            <p>Controls</p>
+            <dl>
+              <div><dt>D-pad</dt><dd>Navigate</dd></div>
+              <div><dt>A</dt><dd>Open</dd></div>
+              <div><dt>B</dt><dd>Back</dd></div>
+              <div><dt>X</dt><dd>Fullscreen</dd></div>
+              <div><dt>Y</dt><dd>Switch Details</dd></div>
+              <div><dt>Start</dt><dd>Live Demo</dd></div>
+              <div><dt>Select</dt><dd>GitHub</dd></div>
+              <div><dt>Keyboard</dt><dd>Tab, arrows, Enter, Esc</dd></div>
+            </dl>
+          </div>
+        </div>
+      </div>
+      <nav class="scene-navigation" aria-label="Move between portfolio pages">
+        <a href="#home" data-scene-link="home"><span aria-hidden="true">←</span> Home</a>
+        <a href="#about" data-scene-link="about">About <span aria-hidden="true">→</span></a>
+      </nav>
+    </section>
+
+    <!-- ABOUT SECTION: Short professional biography and portrait area. -->
+    <section class="about scene" id="about" data-scene="about" aria-hidden="true">
+      <div class="about-card">
+        <p class="eyebrow">About Me</p>
+        <h2>Hello!</h2>
+        <p>I’m a Florida-based front-end developer and digital designer with a bachelor’s degree in Information Technology. I create interactive experiences that combine clean code with bold visual design.</p>
+      </div>
+      <div class="portrait-portal" aria-label="Portrait placement ready">
+        <div class="portrait-placeholder"><strong>CA</strong><span>Portrait placement ready</span></div>
+      </div>
+      <nav class="scene-navigation" aria-label="Move between portfolio pages">
+        <a href="#projects" data-scene-link="projects"><span aria-hidden="true">←</span> Projects</a>
+        <a href="#contact" data-scene-link="contact">Contact <span aria-hidden="true">→</span></a>
+      </nav>
+    </section>
+
+    <!-- CONTACT SECTION: Contact form, professional links, and footer. -->
+    <section class="contact scene" id="contact" data-scene="contact" aria-hidden="true">
+      <div class="contact-card">
+        <p class="eyebrow">Contact</p>
+        <h2>Let’s build something.</h2>
+        <p class="contact-intro">I’m currently seeking front-end development opportunities and website projects. If you’d like to discuss a role, collaboration, or project, feel free to contact me.</p>
+
+        <div class="contact-layout">
+          <!-- CONTACT FORM: Collects the visitor's name, email, and message. -->
+          <form class="contact-form" id="contact-form">
+            <div class="form-field">
+              <label for="contact-name">Name</label>
+              <input id="contact-name" name="name" type="text" autocomplete="name" required>
+            </div>
+            <div class="form-field">
+              <label for="contact-email">Email</label>
+              <input id="contact-email" name="email" type="email" autocomplete="email" required>
+            </div>
+            <div class="form-field form-field-message">
+              <label for="contact-message">Message</label>
+              <textarea id="contact-message" name="message" rows="5" required></textarea>
+            </div>
+            <button class="send-button" type="submit">Send message <span aria-hidden="true">→</span></button>
+          </form>
+
+          <!-- PROFESSIONAL LINKS: Email, social profiles, and résumé. -->
+          <div class="contact-icons" aria-label="Professional links">
+            <a class="contact-icon is-placeholder" href="#" data-contact-placeholder="Add your professional email address" aria-label="Professional email"><span aria-hidden="true">@</span><small>Email</small></a>
+            <a class="contact-icon is-placeholder" href="#" data-contact-placeholder="Add your LinkedIn profile URL" aria-label="LinkedIn"><span aria-hidden="true">in</span><small>LinkedIn</small></a>
+            <a class="contact-icon" href="https://github.com/christianA105" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><span aria-hidden="true">GH</span><small>GitHub</small></a>
+            <a class="contact-icon" href="https://www.deviantart.com/chaoticprince7" target="_blank" rel="noopener noreferrer" aria-label="DeviantArt"><span aria-hidden="true">DA</span><small>DeviantArt</small></a>
+            <a class="contact-icon" href="assets/christian-ash-resume.pdf" download aria-label="Download résumé"><span aria-hidden="true">CV</span><small>Résumé</small></a>
+          </div>
+        </div>
+
+        <p class="contact-notice" id="contact-notice" role="status" aria-live="polite"></p>
+      </div>
+
+      <!-- FOOTER: Copyright and designer credit. -->
+      <footer class="site-footer">
+        <p>&copy; <span id="current-year"></span> Christian Ash. All rights reserved.</p>
+        <p>Designed and developed by Christian Ash.</p>
+      </footer>
+
+      <nav class="scene-navigation" aria-label="Return to the previous page">
+        <a href="#about" data-scene-link="about"><span aria-hidden="true">←</span> About</a>
+      </nav>
+    </section>
+  </main>
+
+  <!-- SCENE COUNTER: Shows which portfolio section is currently open. -->
+  <div class="scene-counter" aria-hidden="true"><span id="scene-number">01</span> / 04</div>
+
+  <!-- SCREENSHOT MODAL: Enlarges a project image in a pop-up window. -->
+  <div class="screenshot-modal" id="screenshot-modal" role="dialog" aria-modal="true" aria-labelledby="screenshot-modal-title" hidden>
+    <div class="screenshot-modal-card">
+      <div class="modal-heading">
+        <h2 id="screenshot-modal-title">Project screenshot</h2>
+        <button id="close-screenshot" type="button">Close</button>
+      </div>
+      <div id="fullscreen-image" class="fullscreen-image" role="img"></div>
+    </div>
+  </div>
+
+  <!-- JAVASCRIPT: Adds navigation and interactive DualDeck behavior. -->
+  <script src="script.js"></script>
+</body>
+</html>
